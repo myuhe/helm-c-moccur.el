@@ -524,7 +524,7 @@ nilなら使用しない"
           do (put-text-property (line-beginning-position)
                                 (line-end-position)
                                 'face
-                                helm-header-face))))
+                                'helm-header))))
 
 (defun helm-c-moccur-dmoccur-scraper ()
   (when (buffer-live-p moccur-mocur-buffer)
