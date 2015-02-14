@@ -92,8 +92,7 @@
 ;;;code:
 
 (require 'helm)
-(eval-when-compile 
-  (require 'cl))
+(require 'cl-lib)
 (require 'color-moccur)
 (require 'rx)
 
@@ -417,7 +416,7 @@ nilなら使用しない"
   (when (buffer-live-p moccur-mocur-buffer)
     (with-current-buffer moccur-mocur-buffer
       (let* ((buf (buffer-substring (point-min) (point-max)))
-             (lines (delete "" (subseq (split-string buf "\n") 3))))
+             (lines (delete "" (cl-subseq (split-string buf "\n") 3))))
         lines))))
 
 (defun helm-c-moccur-occur-by-moccur-get-candidates ()
