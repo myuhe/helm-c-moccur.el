@@ -122,8 +122,7 @@ nilなら`helm-idle-delay'の値を使う"
 (defcustom helm-c-moccur-show-all-when-goto-line-flag nil ;outline
   "non-nilなら必要に応じてoutlineの折畳み表示を解除する"
   :type 'boolean
-  :group 'helm-c-moccur
-  )
+  :group 'helm-c-moccur)
 
 (defcustom helm-c-moccur-higligt-info-line-flag nil
   "non-nilならdmoccur, dired-do-moccurの候補を表示する際にバッファ名などの情報をハイライト表示する"
@@ -187,7 +186,7 @@ nilなら使用しない"
 
       (define-key map (kbd "C-M-f")  'helm-c-moccur-helm-next-file-matches)
       (define-key map (kbd "C-M-b")  'helm-c-moccur-helm-previous-file-matches)
-
+      (define-key map (kbd "C-c C-e")  'helm-c-moccur-edit)
       (define-key map (kbd "C-M-%")  'helm-c-moccur-query-replace-regexp)
       )
     map))
@@ -739,7 +738,13 @@ nilなら使用しない"
   (interactive)
   (helm-c-moccur-wrap-word-internal "\\<" "\\>"))
 
+(defun helm-c-moccur-edit-1 (cand)
+  (interactive)
+  (occur-by-moccur helm-pattern nil))
 
+(defun helm-c-moccur-edit ()
+(interactive)
+(helm-quit-and-execute-action 'helm-c-moccur-edit-1))
 
 ;; minibuf: hoge
 ;; => minibuf: ! hoge
